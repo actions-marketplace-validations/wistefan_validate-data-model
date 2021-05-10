@@ -12,5 +12,4 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   env:
-    ROOT_FOLDER: '/temp'
     SCHEMA_FILE: ${{ inputs.schema-file }}

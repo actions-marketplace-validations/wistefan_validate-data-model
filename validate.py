@@ -201,14 +201,10 @@ try:
     if not bool(schema):
         output["result"] = False
         output["cause"] = "Json schema returned empty (wrong $ref?)."
-        output["parameters"] = {"schemaUrl": schemaUrl, "mail": mail, "test": test}
-        output["validTests"] = validTests
         fail_with_msg(json.dumps(output))
 except:
     output["result"] = False
     output["cause"] = "Json schema cannot be fully loaded."
-    output["parameters"] = {"schemaUrl": schemaUrl, "mail": mail, "test": test}
-    output["validTests"] = validTests
     fail_with_msg(json.dumps(output))
 
 try:
