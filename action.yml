@@ -1,0 +1,16 @@
+name: 'Validate data model'
+description: 'Validate the given smart data model.'
+author: stefan.wiedemann@fiware.org
+branding:
+  icon: 'check'
+  color: 'green'
+inputs:
+  schema-file:
+    description: 'Schema file to be validated, in reference to the repository root.'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    ROOT_FOLDER: '/temp'
+    SCHEMA_FILE: ${{ inputs.schema-file }}
