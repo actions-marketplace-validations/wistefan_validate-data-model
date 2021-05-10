@@ -180,6 +180,8 @@ rootFolder = os.environ['ROOT_FOLDER']
 schemaFile = os.environ['SCHEMA_FILE']
 schemaToValidate = rootFolder + "/" + schemaFile
 
+print(schemaToValidate)
+
 # initialize variables for the script
 output = {}  # the json answering the test
 metaSchema = open_jsonref("https://json-schema.org/draft/2019-09/hyper-schema")
