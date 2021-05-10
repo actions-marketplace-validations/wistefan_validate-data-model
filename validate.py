@@ -295,4 +295,6 @@ output["schemaDiagnose"] = "This schema has " + str(allProperties) + " propertie
 
 print(json.dumps(output))
 
+if faultyDescriptionProperties > 0 or notDescribedProperties > 0:
+    sys.exit(1)
 
