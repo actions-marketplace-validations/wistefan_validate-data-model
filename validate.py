@@ -294,5 +294,7 @@ output["schemaDiagnose"] = "This schema has " + str(allProperties) + " propertie
 print(json.dumps(output))
 
 if faultyDescriptionProperties > 0 or notDescribedProperties > 0:
+    with open(rootFolder + '/failure-result.json', 'w') as f:
+        json.dump(output, f)
     sys.exit(1)
 
