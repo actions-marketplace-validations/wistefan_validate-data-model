@@ -252,16 +252,16 @@ annotations = []
 def createAnnotation(output, key):
     print(output["properties"][key])
     annotation = {}
-    annotation["path"] = schemaFile
+    annotation["file"] = schemaFile
     annotation["line"] =  output["properties"][key]["line"]
     if output["properties"][key]["text"] == incompleteDescription:
-        annotation["level"] = "warning"
+        annotation["annotation_level"] = "warning"
         if "ref" in output["properties"][key]:
             annotation["message"] = f"""The description of the referenced property {key} is to short, please add more information."""
         else:
             annotation["message"] = "The description of the property is to short, please add more information."
     elif output["properties"][key]["text"] == withoutDescription:
-        annotation["level"] = "failure"
+        annotation["annotation_level"] = "failure"
         if "ref" in output["properties"][key]:
             annotation["message"] = f"""The referenced property {key} lacks proper description."""
         else:
