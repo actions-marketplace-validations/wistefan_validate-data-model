@@ -259,13 +259,13 @@ def createAnnotation(output, key):
         if "ref" in output["properties"][key]:
             annotation["message"] = f"""The description of the referenced property {key} is to short, please add more information."""
         else:
-            annotation["message"] = "The description of the property is to short, please add more information."
+            annotation["message"] = f"""The description of the property {key} is to short, please add more information."""
     elif output["properties"][key]["text"] == withoutDescription:
         annotation["annotation_level"] = "failure"
         if "ref" in output["properties"][key]:
             annotation["message"] = f"""The referenced property {key} lacks proper description."""
         else:
-            annotation["message"] = "The property lacks proper description."
+            annotation["message"] = f"""The property {key} lacks proper description."""
     return annotation
 
 allProperties = 0
