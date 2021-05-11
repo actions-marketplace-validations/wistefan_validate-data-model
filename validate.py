@@ -255,7 +255,7 @@ def createAnnotation(output, key):
     annotation["path"] = schemaFile
     annotation["line"] =  output["properties"][key]["line"]
     if output["properties"][key]["text"] == incompleteDescription:
-            annotation["level"] = "warning"
+        annotation["level"] = "warning"
         if "ref" in output["properties"][key]:
             annotation["message"] = f"""The description of the referenced property {key} is to short, please add more information."""
         else:
