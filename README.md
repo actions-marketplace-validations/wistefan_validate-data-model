@@ -10,6 +10,14 @@ The action provide information in the log output and annotation information for 
 
 **Required** Schema file to be validated, in reference to the repository root.
 
+### `annotations-file`
+
+Filename to be used when failure annotations are created.
+
+### `failure-file`
+
+Filename to be used when failure reports are created.
+
 ## Example usage
 
 ```yaml

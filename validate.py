@@ -178,6 +178,8 @@ def parse_payload(schema, level, referenceObject = None):
 
 rootFolder = os.environ['ROOT_FOLDER']
 schemaFile = os.environ['SCHEMA_FILE']
+failureFile = os.environ['FAILURE_FILE']
+annotationsFile = os.environ['ANNOTATIONS_FILE']
 schemaToValidate = rootFolder + "/" + schemaFile
 
 print(schemaToValidate)
@@ -286,7 +288,7 @@ for key in output["properties"]:
 
 if annotations:
     print(annotations)
-    with open(rootFolder + '/annotations.json', 'w') as f:
+    with open(rootFolder + '/' + annotationsFile, 'w') as f:
         json.dump(annotations, f)
 
 output["schemaDiagnose"] = "This schema has " + str(allProperties) + " properties. " + str(notDescribedProperties) +" properties are not described at all and " + str(faultyDescriptionProperties) + " have descriptions that must be completed. " + str(allProperties - faultyDescriptionProperties - notDescribedProperties) + " are described but you can review them anyway. "
@@ -294,7 +296,7 @@ output["schemaDiagnose"] = "This schema has " + str(allProperties) + " propertie
 print(json.dumps(output))
 
 if faultyDescriptionProperties > 0 or notDescribedProperties > 0:
-    with open(rootFolder + '/failure-result.json', 'w') as f:
+    with open(rootFolder + '/' + failureFile, 'w') as f:
         json.dump(output, f)
     sys.exit(1)
 

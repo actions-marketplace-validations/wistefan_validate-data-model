@@ -8,8 +8,16 @@ inputs:
   schema-file:
     description: 'Schema file to be validated, in reference to the repository root.'
     required: true
+  annotations-file:
+    description: 'Filename to be used when failure annotations are created.'
+    required: false
+  failure-file:
+    description: 'Filename to be used when failure reports are created.'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
   env:
     SCHEMA_FILE: ${{ inputs.schema-file }}
+    ANNOTATIONS_FILE: ${{ inputs.annotations-file }}
+    FAILURE_FILE: ${{ inputs.failure-file }}
