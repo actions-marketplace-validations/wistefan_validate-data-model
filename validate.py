@@ -251,7 +251,7 @@ for key in yamlDict:
 
 annotations = []
 
-def createAnnotation(output, key):
+def createAnnotation(output, key, schema):
     print(output["properties"][key])
     annotation = {}
     annotation["file"] = schemaFile
@@ -259,15 +259,15 @@ def createAnnotation(output, key):
     if output["properties"][key]["text"] == incompleteDescription:
         annotation["annotation_level"] = "warning"
         if "ref" in output["properties"][key]:
-            annotation["message"] = f"""The description of the referenced property {key} is to short, please add more information."""
+            annotation["message"] = f"""{schema}: The description of the referenced property {key} is to short, please add more information."""
         else:
-            annotation["message"] = f"""The description of the property {key} is to short, please add more information."""
+            annotation["message"] = f"""{schema}: The description of the property {key} is to short, please add more information."""
     elif output["properties"][key]["text"] == withoutDescription:
         annotation["annotation_level"] = "failure"
         if "ref" in output["properties"][key]:
-            annotation["message"] = f"""The referenced property {key} lacks proper description."""
+            annotation["message"] = f"""{schema}: The referenced property {key} lacks proper description."""
         else:
-            annotation["message"] = f"""The property {key} lacks proper description."""
+            annotation["message"] = f"""{schema}: The property {key} lacks proper description."""
     return annotation
 
 allProperties = 0
@@ -280,10 +280,10 @@ for key in output["properties"]:
     if output["properties"][key]["documented"]:
         documentedProperties += 1
     elif output["properties"][key]["text"] == incompleteDescription:
-        annotations.append(createAnnotation(output, key))
+        annotations.append(createAnnotation(output, key, schema))
         faultyDescriptionProperties += 1
     elif output["properties"][key]["text"] == withoutDescription:
-        annotations.append(createAnnotation(output, key))
+        annotations.append(createAnnotation(output, key,  schema))
         notDescribedProperties += 1
 
 if annotations:
