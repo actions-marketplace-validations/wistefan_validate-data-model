@@ -280,10 +280,10 @@ for key in output["properties"]:
     if output["properties"][key]["documented"]:
         documentedProperties += 1
     elif output["properties"][key]["text"] == incompleteDescription:
-        annotations.append(createAnnotation(output, key, schema))
+        annotations.append(createAnnotation(output, key, schemaFile))
         faultyDescriptionProperties += 1
     elif output["properties"][key]["text"] == withoutDescription:
-        annotations.append(createAnnotation(output, key,  schema))
+        annotations.append(createAnnotation(output, key,  schemaFile))
         notDescribedProperties += 1
 
 if annotations:
